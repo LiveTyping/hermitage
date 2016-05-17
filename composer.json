@@ -1,0 +1,39 @@
+{
+    "name": "livetyping/hermitage",
+    "description": "Image Service",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Ivan Kudinov",
+            "email": "i.kudinov@frostealth.ru"
+        }
+    ],
+    "require": {
+        "php": ">=7.0",
+        "ext-apcu": "*",
+        "slim/slim": "~3.4",
+        "php-di/slim-bridge": "~1.0",
+        "doctrine/cache": "~1.4",
+        "monolog/monolog": "~1.19",
+        "simple-bus/message-bus": "~2.2",
+        "vlucas/phpdotenv": "~2.0",
+        "league/flysystem": "~1.0",
+        "league/flysystem-aws-s3-v3": "~1.0",
+        "league/flysystem-cached-adapter": "~1.0",
+        "nesbot/carbon": "~1.21",
+        "frostealth/php-shortid-helper": "~1.0",
+        "slim/http-cache": "~0.3",
+        "intervention/image": "~2.3",
+        "beberlei/assert": "~2.0"
+    },
+    "require-dev": {
+        "squizlabs/php_codesniffer": "~2.3",
+        "phpro/grumphp": "~0.9"
+    },
+    "autoload": {
+        "psr-4": {
+            "livetyping\\hermitage\\app\\": "app/",
+            "livetyping\\hermitage\\foundation\\": "foundation/"
+        }
+    }
+}
