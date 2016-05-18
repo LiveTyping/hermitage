@@ -20,8 +20,7 @@ use function DI\object;
 use function DI\string;
 
 return [
-    // processor
-    'images.processor.versions' => [
+    'images.versions' => [
         'mini' => [
             'type' => 'resize',
             'height' => 200,
@@ -29,8 +28,8 @@ return [
         ],
         'small' => [
             'type' => 'resize',
-            'height' => 600,
-            'width' => 600,
+            'height' => 400,
+            'width' => 400,
         ],
         'thumb' => [
             'type' => 'fit',
@@ -38,16 +37,17 @@ return [
             'width' => 100,
         ],
     ],
-    'images.processor.optimization-params' => ['maxHeight' => 800, 'maxWidth' => 800],
-    'images.processor.manipulator-map' => [],
-    'images.processor.manager.config' => ['driver' => 'gd'],
+    'images.optimization-params' => ['maxHeight' => 800, 'maxWidth' => 800],
+    'images.manipulator-map' => [],
+    'images.manager-config' => ['driver' => 'gd'],
 
-    'images.processor.manager' => object(ImageManager::class)->constructor(get('images.processor.manager.config')),
+    // processor
+    'images.processor.manager' => object(ImageManager::class)->constructor(get('images.manager-config')),
     'images.processor' => object(Processor::class)
         ->constructor(get('images.processor.manager'))
-        ->method('addManipulatorMap', get('images.processor.manipulator-map'))
-        ->method('setVersions', get('images.processor.versions'))
-        ->method('setOptimizationParams', get('images.processor.optimization-params')),
+        ->method('addManipulatorMap', get('images.manipulator-map'))
+        ->method('setVersions', get('images.versions'))
+        ->method('setOptimizationParams', get('images.optimization-params')),
     ProcessorContract::class => get('images.processor'),
 
     // generator

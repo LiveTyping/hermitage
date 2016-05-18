@@ -34,6 +34,9 @@
         "psr-4": {
             "livetyping\\hermitage\\app\\": "app/",
             "livetyping\\hermitage\\foundation\\": "foundation/"
-        }
+        },
+        "files": [
+            "bootstrap/functions.php"
+        ]
     }
 }

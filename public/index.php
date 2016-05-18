@@ -2,9 +2,7 @@
 
 require __DIR__ . '/../vendor/autoload.php';
 
-require __DIR__ . '/../bootstrap/environment.php';
+$sources = new \livetyping\hermitage\app\Sources();
 
-/** @var \livetyping\hermitage\app\App $app */
-$app = require_once __DIR__ . '/../bootstrap/app.php';
-
-$app->run();
+livetyping\hermitage\bootstrap\load_dotenv(dirname(__DIR__));
+livetyping\hermitage\bootstrap\app($sources)->run();

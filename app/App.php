@@ -18,6 +18,21 @@ use Slim\Exception\NotFoundException;
  */
 class App extends \DI\Bridge\Slim\App
 {
+    /** @var \livetyping\hermitage\app\Sources */
+    private $sources;
+
+    /**
+     * App constructor.
+     *
+     * @param \livetyping\hermitage\app\Sources $sources
+     */
+    public function __construct(Sources $sources)
+    {
+        $this->sources = $sources;
+
+        parent::__construct();
+    }
+
     /**
      * @inheritdoc
      */
@@ -25,9 +40,9 @@ class App extends \DI\Bridge\Slim\App
     {
         $builder->setDefinitionCache(new ApcuCache());
 
-        $builder->addDefinitions(__DIR__ . '/config/settings.php');
-        $builder->addDefinitions(__DIR__ . '/config/definitions.php');
-        $builder->addDefinitions(__DIR__ . '/config/decorators.php');
+        foreach ($this->sources->all() as $source) {
+            $builder->addDefinitions($source);
+        }
     }
 
     /**
