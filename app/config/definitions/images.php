@@ -76,9 +76,10 @@ return [
     'images.storage.adapters.s3.client-config' => [
         'version' => '2006-03-01',
         'region' => env('STORAGE_S3_REGION'),
-        'credentials' => [
-            'key' => env('STORAGE_S3_KEY'),
-            'secret' => env('STORAGE_S3_SECRET'),
-        ],
+        'credentials' => get('images.storage.adapters.s3.client-credentials'),
+    ],
+    'images.storage.adapters.s3.client-credentials' => [
+        'key' => env('STORAGE_S3_KEY'),
+        'secret' => env('STORAGE_S3_SECRET'),
     ],
 ];
