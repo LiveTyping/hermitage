@@ -1,6 +1,6 @@
 {
     "name": "livetyping/hermitage",
-    "description": "Image Service",
+    "description": "Hermitage is a micro-service that provides storage, delivery and modification of your images.",
     "license": "MIT",
     "authors": [
         {
