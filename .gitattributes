@@ -2,3 +2,5 @@
 .gitignore export-ignore
 .editorconfig export-ignore
 grumphp.yml export-ignore
+storage export-ignore
+public export-ignore
