@@ -1,26 +1,26 @@
 Hermitage
 =========
 
-How often do you have to store images, uploaded by users? 
-Rather, very often. 
-Give these images mobile applications are not so simple, because there are many devices with different parameters. 
-What to do? Help comes from Hermitage.
+How often do you have to store images that were uploaded by users? 
+Probably, very often. 
+Putting these images into mobile applications is not so simple, because there are many devices with different parameters. 
+A solution comes with Hermitage.
 
-Hermitage is a micro-service based on Slim that provides storage, 
-delivery and modification of your images for the desired clients and devices. Hermitage can:
-* Take and give the image through the simple REST API
-* Use as a repository local file system, or Amazon S3. If this is not enough, you can easily write your own adapter
-* Give the image in one of a few preset formats. Add your own - a matter of seconds!
+Hermitage is a micro-service based on Slim. It provides storage, 
+delivery and modification of your images for clients and devices you want. Hermitage can:
+* Take and put the image through the simple REST API
+* Use local file system or Amazon S3 as a repository. And you can easily write your own adapter if needed.
+* Put  the image in one of preset formats. You can add your own - it's a matter of seconds!
 
-And all this is out of the box. Amazing! In addition, hermitage is very easy and simple to use. 
-This document will be enough to understand. So, let's begin!
+And all of it is out of the box. Amazing! In addition, Hermitage is very simple and easy to use. 
+The information bellow will cover the details. So, let's begin!
 
 
 # Installation
 
-Initially, you need to install composer lib and after that to add a config file, 
-set environment and create index file for your web-server. 
-You need to do it manually, or you may use pre-setted skeleton 
+At first, you will need to install a composer lib and after that - to add a config file, 
+then create an index file for your web-server and set environment variables. 
+You can do it either by hand, or by using pre-setted skeleton 
 ([Hermitage Skeleton](https://github.com/LiveTyping/hermitage-skeleton)) and skip this section.
 
 Run the [Composer](https://getcomposer.org) command to install:
@@ -31,7 +31,7 @@ composer require livetyping/hermitage ~0.1
 
 ### Config file
 
-You may put your config in `config/main.php` or so.
+You can put your config in `config/main.php` or so.
  
 ```php
 return [
@@ -80,7 +80,7 @@ return [
 
 ### Environment variables
 
-Copy the `.env.example` file to the local `.env` and configure it:
+Copy the `.env.example` file to a local `.env` and configure it:
 
 ```bash
 cp vendor/livetyping/hermitage/.env.example .env
@@ -108,7 +108,7 @@ STORAGE_ADAPTER=local
 
 ### Index file
 
-You may put it in `public/index.php` or so.
+You can put it in `public/index.php` or so.
 
 ```php
 require __DIR__ . '/../vendor/autoload.php';
@@ -125,24 +125,24 @@ livetyping\hermitage\bootstrap\app($sources)->run();
 
 # REST API
 
-Hermitage provides simple API to upload, download and delete your images.
+Hermitage provides a simple API so you could upload, download and delete your images.
 
 ### Signing write requests
 
-To be able to write to Hermitage the user agent will have to specify two request headers: 
+To write to Hermitage a user agent will have to be specified by two request headers: 
 `X-Authenticate-Signature` and `X-Authenticate-Timestamp`.
 
 `X-Authenticate-Signature` is, like the access token, an HMAC (also using SHA-256 and the secret key).
 
-The data for the hash is generated using the following elements:
+The data for the hash is generated with the following elements:
 
 * HTTP method (POST or DELETE)
 * The URI
 * UTC timestamp (integer only)
 
-These elements are concatenated in the above order with `|` as a delimiter character, 
-and a hash is generated using the secret key. 
-The following snippet shows how this can be accomplished in PHP when deleting an image:
+These elements are concatenated in the previous order with `|` as a delimiter character, 
+and the hash is generated with the secret key. 
+The following snippet shows how it can be accomplished with PHP when deleting the image:
 
 ```php
 $timestamp = (new DateTime('now', new DateTimeZone('UTC')))->getTimestamp();
@@ -189,7 +189,7 @@ results in:
 
 ### Delete
 
-Deleting images from Hermitage is accomplished by requesting the image URIs using `HTTP DELETE`.
+Deleting images from Hermitage can be done by requesting image's URIs with `HTTP DELETE`.
 
 ```bash
 curl -XDELETE http://hermitage/<filename> -H "X-Authenticate-Timestamp: <timestamp>" -H "X-Authenticate-Signature: <signature>"
