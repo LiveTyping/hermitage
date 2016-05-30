@@ -48,6 +48,6 @@ class StoreAction
         $command = new StoreImageCommand($mime, $binary);
         $this->bus->handle($command);
 
-        return $response->withJson(['filename' => $command->getPath()]);
+        return $response->withStatus(201)->withJson(['filename' => $command->getPath()]);
     }
 }
