@@ -1,7 +1,8 @@
 {
     "name": "livetyping/hermitage",
-    "description": "Hermitage is a micro-service that provides storage, delivery and modification of your images.",
+    "description": "RESTful image server",
     "license": "MIT",
+    "keywords": ["image", "storage"],
     "authors": [
         {
             "name": "Ivan Kudinov",
